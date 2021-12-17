@@ -25,11 +25,11 @@ const associateArticle = {
 };
 
 test('renders component without errors', ()=> {
-    render(<Article article={[]} />)
+    render(<Article article={[]} />);
 });
 
 test('renders headline, author from the article when passed in through props', ()=> {
-    render(<Article article={testArticle} />)
+    render(<Article article={testArticle} />);
     
     const headline = screen.queryByText(/test headline/i);
     const author = screen.queryByText(/test author/i);
@@ -40,9 +40,9 @@ test('renders headline, author from the article when passed in through props', (
 });
 
 test('renders "Associated Press" when no author is given', ()=> {
-    render(<Article article={associateArticle} />)
+    render(<Article article={associateArticle} />);
 
-    const associates = screen.queryByText(/Associated Press/)
+    const associates = screen.queryByText(/Associated Press/);
     
     
     
@@ -56,10 +56,10 @@ test('executes handleDelete when the delete button is pressed', ()=> {
     
     render(<Article article={testArticle} handleDelete={mockHandleDelete} />)
 
-    const button = screen.queryAllByTestId('deleteButton')
-    userEvent.click(button[0])
+    const button = screen.queryAllByTestId('deleteButton');
+    userEvent.click(button[0]);
 
-    expect(mockHandleDelete.mock.calls.length).toBe(1)
+    expect(mockHandleDelete.mock.calls.length).toBe(1);
 
 });
 
