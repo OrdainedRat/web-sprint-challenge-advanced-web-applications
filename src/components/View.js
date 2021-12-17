@@ -10,6 +10,11 @@ const View = (props) => {
     const [editId, setEditId] = useState();
 
     const handleDelete = (id) => {
+        axios.delete(`http://localhost:5000/api/articles/${id}`)
+            .then(res => {
+                setArticles(articles.filter(article => (article.id !== id)))
+            })  
+        
     }
 
     const handleEdit = (article) => {

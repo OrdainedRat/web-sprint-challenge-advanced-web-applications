@@ -1,12 +1,69 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 
 const Login = () => {
+    
+    const [credentials, setCredentials] = useState({
+        username: '',
+        password: ''
+    })
+    
+    const [error, setError] = useState('')
+
+    const { push } = useHistory();
+
+    const handleChanges = (e) => {
+        setCredentials({
+            ...credentials,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+
+        return(
+            axios.post(`http://localhost:5000/api/login`, credentials)
+                .then(res => {
+                    console.log(res);
+                    const { token, role, username } = res.data;
+                    localStorage.setItem('token', token);
+                    localStorage.setItem('role', role);
+                    localStorage.setItem('username', username)
+                    push('/view')
+                })
+                .catch(err => {
+                    setError(err.response.data.error)
+                })
+        )
+    }
     
     return(<ComponentContainer>
         <ModalContainer>
             <h1>Welcome to Blogger Pro</h1>
             <h2>Please enter your account information.</h2>
+            <form onSubmit={onSubmit} >
+                <label>Username:
+                    <input 
+                        id='username'
+                        type='username'
+                        name='username'
+                        onChange={handleChanges}
+                    />
+                </label>
+                <label>Password:
+                    <input 
+                        id='password'
+                        type='password'
+                        name='password'
+                        onChange={handleChanges}
+                    />
+                </label>
+                <button id='submit' >Submit</button>
+            </form>
+            <p id='error'>{error}</p>
         </ModalContainer>
     </ComponentContainer>);
 }
