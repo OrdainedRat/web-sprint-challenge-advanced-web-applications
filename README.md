@@ -118,8 +118,19 @@ Be prepared to demonstrate your understanding of this week's concepts by answeri
 
 1. Explain what a token is used for.
 
+    <!-- A token is used to make a user distinct. We use it so that we can target the user individually, which is useful when we need to show data or give access to functions that are specific to said user. -->
+
 2. What steps can you take in your web apps to keep your data secure?
+
+    <!-- Not ever actually deploying them :) Also encryption ig. -->
 
 3. Describe how web servers work.
 
+    <!-- They work just like computers, but if the computer was lame and only sat there doing computer things instead of rendering doom or something. They store, move, and alter data just like ever other computer, but they aren't built for user interfaces like a home PC. They just handle data.  -->
+
 4. Which HTTP methods can be mapped to the CRUD acronym that we use when interfacing with APIs/Servers.
+
+    <!-- Create - Post
+    Read - Get
+    Update - Put
+    Delete - Delete -->
